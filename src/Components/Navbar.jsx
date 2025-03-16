@@ -8,12 +8,22 @@ const auth = getAuth(app)
 
 export default function Navbar() {
 
+
     const estiloNavbar = 'text-xl text-white font-bold hover:text-red-500'
 
     const profileContext = use(UserContext)
 
 
     const { logged, profile } = profileContext
+
+    console.log(profile.tipo)
+
+
+    const esDirectora = profile.tipo === 'directora'
+
+
+
+
 
     const handleLogout = async () => {
 
@@ -38,6 +48,10 @@ export default function Navbar() {
 
                         {logged && <Link to='/profile' className={estiloNavbar} >Profile</Link>}
                     </li>
+
+
+                    {esDirectora && <li>1</li>}
+                    {!esDirectora && <li>2</li>}
 
                     <li>
 

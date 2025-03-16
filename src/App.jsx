@@ -7,12 +7,20 @@ import NotFound from './pages/NotFound'
 import Profile from './pages/Profile'
 import Navbar from './Components/Navbar'
 import Protected from './Components/Protected'
+import TransaccionExitosa from './Components/TransaccionExitosa'
+import Estudiante from './pages/Estudiante'
+
+
 export default function App() {
   return (
 
 
     <BrowserRouter>
       <Routes>
+
+
+
+
 
 
         <Route element={<Navbar />}>
@@ -24,17 +32,20 @@ export default function App() {
 
 
             <Route path='profile' element={<Profile />} />
+            <Route path='estudiante' element={<Estudiante />} />
+
 
           </Route>
           <Route path='login' element={<Login />} />
 
           <Route path='register' element={<Register />} />
+          <Route path='exitosa' element={<TransaccionExitosa />} />
           <Route path='*' element={<NotFound />} />
 
 
 
-        </Route>
 
+        </Route>
       </Routes>
 
     </BrowserRouter>

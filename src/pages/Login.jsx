@@ -1,16 +1,20 @@
-import React, { useState } from 'react'
+import React, { use, useState } from 'react'
 
 
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 import { app } from '../../credentials'
 import { Link, useNavigate } from 'react-router'
-
+import { UserContext } from '../Context/UserContext'
+import { doc, getDoc, getFirestore } from 'firebase/firestore'
+const db = getFirestore(app)
 
 const auth = getAuth(app)
 
 export default function Login() {
+    const profileContext = use(UserContext)
     const navigation = useNavigate()
 
+    const { logged, profile } = profileContext
     const [email, setEmail] = useState('')
 
     const [password, setPassword] = useState('')
@@ -22,9 +26,17 @@ export default function Login() {
         try {
 
             const user = await signInWithEmailAndPassword(auth, email, password)
-            console.log(user.user.uid)
-            console.log(user.user.email)
-            navigation('/')
+            const userDocRef = doc(db, 'users', user.user.uid)
+            const docSnap = await getDoc(userDocRef)
+            console.log("xd", docSnap.data().tipo === 'estudiante')
+            if (docSnap.data().tipo === 'estudiante') {
+                navigation('/estudiante')
+            } else {
+
+                navigation('/')
+            }
+
+
 
         } catch (error) {
             console.log(error.message)
