@@ -56,14 +56,30 @@ export default function Navbar() {
                     <li>
 
 
-                        <div className='flex gap-6'>
+                        <div className='flex gap-6 items-center'>
                             {logged ?
 
                                 <>
-                                    {profile.email}
-                                    {profile.nombre}
+                                    <div className="flex items-center gap-3">
+                                        {/* Foto de perfil */}
+                                        <div className="w-10 h-10 rounded-full overflow-hidden bg-gray-200 flex items-center justify-center">
+                                            {profile.foto_perfil ? (
+                                                <img
+                                                    src={profile.foto_perfil}
+                                                    alt="Foto de perfil"
+                                                    className="w-full h-full object-cover"
+                                                />
+                                            ) : (
+                                                <span className="text-gray-400 text-xs">Sin foto</span>
+                                            )}
+                                        </div>
+                                        <div>
+                                            <div className="text-white">{profile.nombre}</div>
+                                            <div className="text-gray-300 text-xs">{profile.email}</div>
+                                        </div>
+                                    </div>
 
-                                    <button className='bg-white w-20 h-10 cursor-pointer' onClick={handleLogout}>Logout</button>
+                                    <button className='bg-white w-20 h-10 cursor-pointer rounded-md hover:bg-gray-100' onClick={handleLogout}>Logout</button>
 
                                 </> :
                                 <>

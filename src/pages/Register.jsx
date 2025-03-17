@@ -32,7 +32,8 @@ export default function Register() {
                 nombre: name,
                 email: email,
                 uid: nombreRegistradp.user.uid,
-                fechaCreacion: new Date()
+                fechaCreacion: new Date(),
+                foto_perfil: ''
             });
             setEmail('');
             setPassword('');
@@ -59,7 +60,8 @@ export default function Register() {
                 nombre: user.displayName,
                 email: user.email,
                 uid: user.uid,
-                fechaCreacion: new Date()
+                fechaCreacion: new Date(),
+                foto_perfil: user.photoURL || ''
             }, { merge: true });
             setLoading(false);
 
