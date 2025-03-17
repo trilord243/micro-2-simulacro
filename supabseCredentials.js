@@ -1,11 +1,10 @@
 import { createClient } from "@supabase/supabase-js";
 
 const supabaseUrl = "Supababse url";
-const supabaseKey =
-  "Tu llave anon public";
+const supabaseKey = "Tu llave anon public";
 
 const supabase = createClient(supabaseUrl, supabaseKey);
-
+//hola
 export const uploadImage = async (file, bucket, folder) => {
   try {
     const fileExt = file.name.split(".").pop();
